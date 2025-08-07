@@ -1,0 +1,23 @@
+.fruit-salad-img-wrapper {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+  transition: transform 0.4s ease;
+}
+
+.fruit-salad-img {
+  transition: transform 0.4s ease;
+  object-fit: cover;
+  width: 100%;
+  max-height: 450px;
+}
+
+.fruit-salad-img-wrapper:hover .fruit-salad-img {
+  transform: scale(1.05);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #ff4081, #ff80ab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

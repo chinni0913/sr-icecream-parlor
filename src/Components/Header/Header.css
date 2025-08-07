@@ -1,0 +1,12 @@
+.nav-link-custom {
+    color: #000 !important;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+    color: #6f42c1 !important; /* purple-ish hover */
+}

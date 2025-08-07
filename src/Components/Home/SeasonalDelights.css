@@ -1,0 +1,15 @@
+.seasonal-card .image-wrapper {
+  overflow: hidden;
+  height: 400px;
+}
+
+.seasonal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.seasonal-card:hover .seasonal-img {
+  transform: scale(1.1);
+}
