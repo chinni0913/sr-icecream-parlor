@@ -12,8 +12,54 @@ import Ghibli from '../../assets/glibli.png'
 import Truck from '../../assets/truck.png'
 import Shop from '../../assets/shop.png'
 import './About.css';
+import { useState } from 'react'
 
 const About = () => {
+    // process 1
+    const [data, setData] = useState('');
+    const [submitted, setSubmitted] = useState("");
+
+    const handleChange = (e) => {
+        //  e.preventDefault();
+        setData(e.target.value);
+    }
+
+    const formSubmit = () => {
+        setSubmitted(data);
+        setData("");
+        // alert("email submitted " + ": " + data)
+    }
+
+    // process 2
+
+    const [fullName, setFullName] = useState('');
+    const [password, setPassword] = useState('');
+    const [displayData, setDisplayData] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // alert(`Full Name: ${fullName}, Password: ${password}`);
+        setDisplayData(`Full Name: ${fullName}, Password: ${password}`);
+        setFullName("")
+        setPassword("")
+    }
+
+    // process 3
+
+    const [num1, setNum1] = useState(0);
+    const [num2, setNum2] = useState(0);
+    const [total, setTotal] = useState(0);
+    const handleNum1Change = (e) => {
+        setNum1(Number(e.target.value));
+    }
+    const handleNum2Change = (e) => {
+        setNum2(Number(e.target.value));
+    }
+    const calculateTotal = () => {
+        setTotal(num1 + num2);
+        // alert(num1 + num2);
+    }
+
     return (
         <>
             <div className="about-container text-center p-5" style={{ backgroundColor: '#f28ec6f7', color: '#fff', position: 'relative' }}>
@@ -65,6 +111,89 @@ const About = () => {
                 </div>
             </div>
 
+            {/* practice */}
+            <div className="container mt-5 mb-5">
+                <div className="row">
+                    <div className="col-md-6">
+                        <form>
+                            <label htmlFor="email" className="form-label fw-bold">Subscribe to our Newsletter</label>
+                            <div className="input-group mb-3">
+                                <input type="email" className="form-control" id="email" placeholder="Enter your email"
+                                    value={data}
+                                    // onChange={(e) => setData(e.target.value)}
+                                    onChange={(e) => handleChange(e)}
+                                />
+                                <button className="btn btn-primary" type="button" onClick={formSubmit}>Subscribe</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div className="col-md-6 text-center d-flex align-items-center justify-content-center">
+                        {submitted && (
+                            <p className="mt-3 text-success fw-bold">
+                                You submitted: {submitted}
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-6">
+                        <form>
+                            <label htmlFor="fullName" className="form-label fw-bold">Sign Up</label>
+                            <div className="mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="fullName"
+                                    placeholder="Full Name"
+                                    value={fullName}
+                                    onChange={(e) => setFullName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-warning" onClick={handleSubmit}>Submit</button>
+                        </form>
+                    </div>
+                    <div className="col-md-6">
+                        {displayData && (
+                            <p className="mt-3 text-success fw-bold">
+                                {displayData}
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-6">
+                        <input type="number" className='form-control mt-2' value={num1} onChange={handleNum1Change} />
+                        <br />
+                        <input type="number" className='form-control mt-2' value={num2} onChange={handleNum2Change} />
+                        <br />
+                        <button onClick={calculateTotal}>Calculate</button>
+                    </div>
+                    <div className="col-md-6">
+                        <h3 className='text-success'>Total: {total}</h3>
+                    </div>
+                </div>
+            </div>
+
+            {/* practice */}
 
             <div className="container mt-5 mb-5">
                 <div className="row">

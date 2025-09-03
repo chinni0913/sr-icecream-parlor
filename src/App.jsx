@@ -45,7 +45,7 @@ function App() {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss
+          pauseOnFocusLoss 
           draggable
           pauseOnHover
           theme="light"
