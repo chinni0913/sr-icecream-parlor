@@ -12,10 +12,10 @@ import Ghibli from '../../assets/glibli.png'
 import Truck from '../../assets/truck.png'
 import Shop from '../../assets/shop.png'
 import './About.css';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const About = () => {
-    // process 1
+    // method 1
     const [data, setData] = useState('');
     const [submitted, setSubmitted] = useState("");
 
@@ -30,8 +30,7 @@ const About = () => {
         // alert("email submitted " + ": " + data)
     }
 
-    // process 2
-
+    // method 2
     const [fullName, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [displayData, setDisplayData] = useState('');
@@ -44,8 +43,7 @@ const About = () => {
         setPassword("")
     }
 
-    // process 3
-
+    // method 3
     const [num1, setNum1] = useState(0);
     const [num2, setNum2] = useState(0);
     const [total, setTotal] = useState(0);
@@ -58,6 +56,53 @@ const About = () => {
     const calculateTotal = () => {
         setTotal(num1 + num2);
         // alert(num1 + num2);
+    }
+
+    //  method 4
+    const [count, setCount] = useState(0);
+
+    const DecrementNumber = (e) => {
+        setCount(count - 1);
+    }
+
+    // method 5
+    const [task, setTask] = useState("");
+    const [list, setList] = useState([]);
+
+    const addTask = () => {
+        if (task.trim() === "") return;
+        setList([...list, task]);
+        setTask("");
+    };
+
+    // method 6
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        async function getData() {
+            const res = await fetch("https://jsonplaceholder.typicode.com/users");
+            const data = await res.json();
+            setUsers(data);
+        }
+        getData();
+    }, [])
+
+    useEffect(() => {
+        const getPosts = async () => {
+            try {
+                const res = await fetch("https://jsonplaceholder.typicode.com/users");
+                const data = await res.json();
+                setUsers(data);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getPosts();
+    }, [])
+
+    // method 7
+    const [colors, setColors] = useState(false);
+    const handleChangeColor = () => {
+        setColors(!colors);
     }
 
     return (
@@ -112,6 +157,8 @@ const About = () => {
             </div>
 
             {/* practice */}
+
+            {/* method 1 */}
             <div className="container mt-5 mb-5">
                 <div className="row">
                     <div className="col-md-6">
@@ -137,18 +184,18 @@ const About = () => {
                     </div>
                 </div>
             </div>
-
+            {/* method 2 */}
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6">
                         <form>
-                            <label htmlFor="fullName" className="form-label fw-bold">Sign Up</label>
+                            <label htmlFor="name" className="form-label fw-bold">Sign Up</label>
                             <div className="mb-3">
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="fullName"
-                                    placeholder="Full Name"
+                                    id="name"
+                                    placeholder="Name"
                                     value={fullName}
                                     onChange={(e) => setFullName(e.target.value)}
                                     required
@@ -177,7 +224,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-
+            {/* method 3 */}
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6">
@@ -185,10 +232,69 @@ const About = () => {
                         <br />
                         <input type="number" className='form-control mt-2' value={num2} onChange={handleNum2Change} />
                         <br />
-                        <button onClick={calculateTotal}>Calculate</button>
+                        <button onClick={calculateTotal} className='btn btn-info'>Calculate</button>
                     </div>
                     <div className="col-md-6">
                         <h3 className='text-success'>Total: {total}</h3>
+                        {/* <h3 className='text-success'>Total: {`${num1} + ${num2} = ${total}`}</h3> */}
+                    </div>
+                </div>
+            </div>
+            {/* method 4 */}
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-12 text-center d-flex ">
+                        <button className='btn btn-secondary btn-sm' onClick={DecrementNumber}>Decrease</button>
+                        &nbsp;
+                        <h5>COUNT : {count} </h5>
+                        &nbsp;
+                        <button className='btn btn-secondary btn-sm' onClick={(e) => (setCount(count + 1))}>Increase</button>
+                        &nbsp;
+                        <button onClick={() => setCount(0)} className='btn btn-info btn-sm'>Reset</button>
+                    </div>
+                </div>
+            </div>
+            {/* method 5 */}
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-6">
+                        <h5>Add Items</h5>
+                        <input value={task} onChange={(e) => setTask(e.target.value)} />
+                        &nbsp;
+                        <button className='btn btn-primary btn-sm' onClick={addTask}>Add</button>
+                    </div>
+                    <div className="col-md-6">
+                        <ul>
+                            <h5>Items Added</h5>
+                            {list.map((item, index) => (
+                                <li key={index}>
+                                    {item} &nbsp;
+                                    <button className='btn btn-danger btn-sm' onClick={() => setList(list.filter((_, i) => i !== index))}>Delete</button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* method 6 */}
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <p>User Data</p>
+                        <ul>{
+                            users.map((user, id) => <li key={id}>{user.name}</li>)
+                        }</ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* method 7 */}
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <p>Button Color Change</p>
+                        <button className="btn" style={{ backgroundColor: colors ? 'blue' : 'purple' }} onClick={handleChangeColor}>Click Me</button>
                     </div>
                 </div>
             </div>

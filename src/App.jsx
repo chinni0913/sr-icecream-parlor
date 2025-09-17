@@ -1,22 +1,20 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import Recipe from './Components/Receipe/Receipe'
 import Header from './Components/Header/Header'
 import Home from './Components/Home/Home'
 import About from './Components/About/About'
-import { Route, BrowserRouter, Routes } from 'react-router-dom'
-import Footer from './Components/Footer/Footer'
 import Contact from './Components/Contact/Contact'
-import Flavors from './Components/Flavours/Flavors'
+import Flavors from './Components/Flavors/Flavors'
 import Cart from './Components/Cart/Cart'
-import { CartProvider } from './Components/Context/CartContext'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import SignIn from './Components/SignIn/SignIn'
 import SignUp from './Components/SignUp/SignUp'
-import Payment from './Components/Payment/Payment' 
+import Payment from './Components/Payment/Payment'
 import ReviewList from './Components/Review/ReviewList'
-// import './App.css'
+import Footer from './Components/Footer/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { CartProvider } from './Components/Context/CartContext'
+
 
 function App() {
 
@@ -29,6 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/recipe" element={<Recipe />} />
             <Route path="/flavors" element={<Flavors />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/signin" element={<SignIn />} />
@@ -45,7 +44,7 @@ function App() {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss 
+          pauseOnFocusLoss
           draggable
           pauseOnHover
           theme="light"

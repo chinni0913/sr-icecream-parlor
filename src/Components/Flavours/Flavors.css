@@ -1,5 +1,0 @@
-.flavor-card:hover {
-  transform: scale(1.02);
-  transition: 0.3s ease-in-out;
-  box-shadow: 0 10px 25px rgba(108, 92, 231, 0.1);
-}

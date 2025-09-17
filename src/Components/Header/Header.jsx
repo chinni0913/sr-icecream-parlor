@@ -36,6 +36,7 @@ function Header() {
                     <Nav className="mx-auto my-2 my-lg-0 text-center" style={{ gap: '20px' }} navbarScroll>
                         <Link to="/" className="nav-link-custom" onClick={() => setExpanded(false)}>Home</Link>
                         <Link to="/about" className="nav-link-custom" onClick={() => setExpanded(false)}>About Us</Link>
+                        <Link to="/recipe" className="nav-link-custom" onClick={() => setExpanded(false)}>Recipe</Link>
                         <Link to="/contact" className="nav-link-custom" onClick={() => setExpanded(false)}>Contact</Link>
 
                         {/* 👇 Cart and SignIn for MOBILE view only */}
